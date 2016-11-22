@@ -1,0 +1,27 @@
+<h1> Edit an Address </h1>
+
+<%= form_tag "/addresses/#{@address.id}", method: :patch do %>
+  <div>
+    <%= label_tag :type %>
+    <%= text_field_tag :type, @address.type %>
+  </div>
+  <div>
+    <%= label_tag :street_address %>
+    <%= text_field_tag :street_address, @address.street_address %>
+  </div>
+  <div>
+    <%= label_tag :note %>
+    <%= text_field_tag :note, @address.images %>
+  </div>
+  <div>
+    <%= label_tag :latitude %>
+    <%= text_field_tag :latitude, @address.description %>
+  </div>
+  <div>
+    <%= label_tag :longitude %>
+    <%= text_field_tag :longitude, @address.description %>
+  </div>
+  <div>
+    <%= submit_tag "Change it!" %>
+  </div>
+<% end %>
