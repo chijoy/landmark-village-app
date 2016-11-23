@@ -1,12 +1,12 @@
 class AddressesController < ApplicationController
 
   def index
-    @addresses = Address.all.includes(:addresses)
+    @addresses = Address.all
     search_term = params[:search_term]
 
     if search_term
       fuzzy_search_term = "%#{search_term}%"
-      @addresses = @addresses.where("address ILIKE ? OR type ILIKE ?", fuzzy_search_term, fuzzy_search_term)
+      @addresses = @addresses.where("street_address ILIKE ? OR type ILIKE ?", fuzzy_search_term, fuzzy_search_term)
     end
   end
 
@@ -15,7 +15,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(address: params[:address],
+    @address = Address.new(street_address: params[:street_address],
                             type: params[:type],
                             note: params[:note],
                             latitude: params[:latitude],
@@ -34,7 +34,7 @@ class AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address: params[:address],
+    @address.update(street_address: params[:street_address],
                     type: params[:type],
                     note: params[:note],
                     latitude: params[:latitude],
